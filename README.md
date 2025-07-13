@@ -21,19 +21,19 @@
     <p>Python</p>
   <li>Libraries:</li>
   <ol type="1">
-    <li>Custom Tkinter</li>
+    <li>Custom Tkinter --></li>
     <p>For Clean and modern looking Graphical User Interface.</p>
-    <li>Tkinter</li>
+    <li>Tkinter --></li>
     <p>For showing messageboxs</p>
-    <li>Pymongo</li>
+    <li>Pymongo --></li>
     <p>For connecting database to the Graphical User Interface</p>
-    <li>Haslib</li>
+    <li>Haslib --></li>
     <p>For encrypting passwords to avoid security breaches.</p>
   </ol>
   <li>Database:</li>
   <p>MongoDB</p>
 </ul>
-
+<p></p>
 <h2>Interface snapshots</h2>
 SignUp Page:
 <img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
