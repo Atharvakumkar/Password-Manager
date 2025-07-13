@@ -13,7 +13,7 @@
   <p>Built using Tkinter, the interface is beginner-friendly and easy to navigate.</p>
   <li>Real-Time Updates</li>
   <p>The vault instantly reflects any new or updated entries without needing to restart the app.</p>
-</ui>
+</ul>
 
 <h2>Tech-Stack:</h2>
 <ul>
