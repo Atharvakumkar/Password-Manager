@@ -14,7 +14,21 @@
   <li>Real-Time Updates</li>
   <p>The vault instantly reflects any new or updated entries without needing to restart the app.</p>
 </ui>
-<p></p>
+
+<h2>Tech-Stack:</h2>
+<ul>
+  <li>Python</li>
+  <ol>
+    <li>Custom Tkinter</li>
+    <li>Tkinter</li>
+    <li>Pymongo</li>
+    <li>Haslib</li>
+  </ol>
+  <li>MongoDB</li>
+  <p>For Database</p>
+</ul>
+
+<h2>Interface snapshots</h2>
 SignUp Page:
 <img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
 
