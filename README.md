@@ -17,7 +17,11 @@
 
 <h2>Tech-Stack:</h2>
 <ul>
-  <li>Python</li>
+  <li>Core programming language</li>
+  <ul>
+    <li>Python</li>
+  </ul>
+  <li>Libraries</li>
   <ol type="1">
     <li>Custom Tkinter</li>
     <li>Tkinter</li>
