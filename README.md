@@ -1,5 +1,8 @@
 <h1>Password-Vault</h1>
+<p>This Password Vault is a simple and secure GUI-based application to store and manage your website credentials. It connects to a local MongoDB database and offers an intuitive interface to handle your login data..</p>
 
+<h2>Features:</h2>
+<p></p>
 SignUp Page:
 <img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
 
