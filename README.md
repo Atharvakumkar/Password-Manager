@@ -4,11 +4,16 @@
 <h2>Features:</h2>
 <ul>
   <li>Add New Credentials</li>
+  <p>Store website name, username/email, and password securely with just a few clicks.</p>
   <li>View Stored Credentials</li>
+  <p>Display all saved website login entries in a structured table format.</p>
   <li>Live Data from MongoDB</li>
+  <p>All credentials are stored and retrieved from a local MongoDB database using pymongo.</p>
   <li>Simple and Clean GUI</li>
+  <p>Built using Tkinter, the interface is beginner-friendly and easy to navigate.</p>
   <li>Real-Time Updates</li>
-</li>
+  <p>The vault instantly reflects any new or updated entries without needing to restart the app.</p>
+</ui>
 <p></p>
 SignUp Page:
 <img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
