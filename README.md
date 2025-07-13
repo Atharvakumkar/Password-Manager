@@ -17,19 +17,21 @@
 
 <h2>Tech-Stack:</h2>
 <ul>
-  <li>Core programming language</li>
-  <ul>
-    <li>Python</li>
-  </ul>
-  <li>Libraries</li>
+  <li>Core programming language:</li>
+    <p>Python</p>
+  <li>Libraries:</li>
   <ol type="1">
     <li>Custom Tkinter</li>
+    <p>For Clean and modern looking Graphical User Interface.</p>
     <li>Tkinter</li>
+    <p>For showing messageboxs</p>
     <li>Pymongo</li>
+    <p>For connecting database to the Graphical User Interface</p>
     <li>Haslib</li>
+    <p>For encrypting passwords to avoid security breaches.</p>
   </ol>
-  <li>MongoDB</li>
-  <p>For Database</p>
+  <li>Database:</li>
+  <p>MongoDB</p>
 </ul>
 
 <h2>Interface snapshots</h2>
