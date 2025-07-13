@@ -1,4 +1,4 @@
-<h2>Password-Vault</h2>
+<h1>Password-Vault</h1>
 
 SignUp Page:
 <img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
