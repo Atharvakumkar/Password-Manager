@@ -2,12 +2,12 @@
 <p>This Password Vault is a simple and secure GUI-based application to store and manage your website credentials. It connects to a local MongoDB database and offers an intuitive interface to handle your login data..</p>
 
 <h2>Features:</h2>
-<li>
-  <ul>Add New Credentials</ul>
-  <ul>View Stored Credentials</ul>
-  <ul>Live Data from MongoDB</ul>
-  <ul>Simple and Clean GUI</ul>
-  <ul>Real-Time Updates</ul>
+<ul>
+  <li>Add New Credentials</li>
+  <li>View Stored Credentials</li>
+  <li>Live Data from MongoDB</li>
+  <li>Simple and Clean GUI</li>
+  <li>Real-Time Updates</li>
 </li>
 <p></p>
 SignUp Page:
