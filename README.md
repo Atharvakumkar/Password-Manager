@@ -1,54 +1,207 @@
-<h1>Password-Vault</h1>
-<p>This Password Vault is a simple and secure GUI-based application to store and manage your website credentials. It connects to a local MongoDB database and offers an intuitive interface to handle your login data..</p>
+# Password Vault
 
-<h2>Features:</h2>
-<ul>
-  <li>Add New Credentials</li>
-  <p>Store website name, username/email, and password securely with just a few clicks.</p>
-  <li>View Stored Credentials</li>
-  <p>Display all saved website login entries in a structured table format.</p>
-  <li>Live Data from MongoDB</li>
-  <p>All credentials are stored and retrieved from a local MongoDB database using pymongo.</p>
-  <li>Simple and Clean GUI</li>
-  <p>Built using Tkinter, the interface is beginner-friendly and easy to navigate.</p>
-  <li>Real-Time Updates</li>
-  <p>The vault instantly reflects any new or updated entries without needing to restart the app.</p>
-</ul>
+A desktop password manager built with Python. Password Vault allows users to register an account, log in securely, and store, view, and delete website credentials through a local MongoDB database. Passwords are hashed using SHA-256 before being written to the database. The interface is built with customtkinter and runs as a fixed 1080x720 desktop window.
 
-<h2>Tech-Stack:</h2>
-<ul>
-  <li>Core programming language:</li>
-    <p>Python</p>
-  <li>Libraries:</li>
-  <ol type="1">
-    <li>Custom Tkinter --></li>
-    <p>For Clean and modern looking Graphical User Interface.</p>
-    <li>Tkinter --></li>
-    <p>For showing messageboxs</p>
-    <li>Pymongo --></li>
-    <p>For connecting database to the Graphical User Interface</p>
-    <li>Haslib --></li>
-    <p>For encrypting passwords to avoid security breaches.</p>
-  </ol>
-  <li>Database:</li>
-  <p>MongoDB</p>
-</ul>
-<p></p>
-<h2>Interface snapshots</h2>
-<h3>SignUp Page:</h3>
+## Table of Contents
 
-<img width="1356" height="937" alt="Screenshot 2025-07-13 204304" src="https://github.com/user-attachments/assets/d50df04c-dd2b-4e8e-bde4-5acf2358b25d" />
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Database Schema](#database-schema)
+- [Module Reference](#module-reference)
+- [Security Notes](#security-notes)
+- [Author](#author)
+- [License](#license)
 
-<h3>Login Page:</h3>
+---
 
-<img width="1347" height="928" alt="Screenshot 2025-07-13 204322" src="https://github.com/user-attachments/assets/4344f948-9228-49fe-bc8c-1f3956a4def7" />
+## Features
 
-<h3>Dashboard:</h3>
+- User registration with name, email, and password; duplicate email detection on signup
+- Password confirmation validation at registration
+- Login authenticated against a SHA-256 hashed password stored in MongoDB
+- Add website credentials (app name, email, password) to a per-user stored array
+- Delete a stored credential by matching app name and email
+- View all saved credentials in a scrollable popup window
+- Logout returns to the signup screen without restarting the application
 
-<img width="1347" height="933" alt="Screenshot 2025-07-13 204442" src="https://github.com/user-attachments/assets/76a607dd-fc3e-4965-83bd-6bc17430c132" />
+---
 
-<h3>Database:</h3>
-<img width="1919" height="1020" alt="Screenshot 2025-07-13 204614" src="https://github.com/user-attachments/assets/0ee72bea-586c-4fd4-91b0-10925a5e5400" />
+## Project Structure
 
+```
+Password-Vault/
+|
+|-- mainProject.py    # Self-contained application: signup, login, and home window in one file
+|-- home.py           # Standalone home window module (split version)
+|-- login.py          # Standalone login window module (split version)
+|-- signUp.py         # Standalone signup window module (split version)
+|-- README.md
+```
 
+`mainProject.py` is the primary entry point and contains the complete application. The other three files are modular versions of each screen split into separate files.
 
+---
+
+## Tech Stack
+
+**Language**
+
+- Python 3.x
+
+**GUI**
+
+- customtkinter — styled widget layer providing the main window, frames, entries, buttons, and labels
+- tkinter.messagebox — used for error and success dialogs
+
+**Database**
+
+- MongoDB (local instance on `mongodb://localhost:27017/`)
+- pymongo — Python driver for MongoDB; used for all read and write operations
+
+**Security**
+
+- hashlib — SHA-256 hashing applied to passwords before storage and before login comparison
+
+**Typography**
+
+- Rubik — used across all font sizes in the application (loaded as a system font)
+
+---
+
+## Prerequisites
+
+- Python 3.8 or above
+- MongoDB Community Server running locally on the default port (`27017`)
+- pip
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Atharvakumkar/Password-Vault.git
+cd Password-Vault
+```
+
+Install required Python packages:
+
+```bash
+pip install customtkinter pymongo
+```
+
+Ensure MongoDB is running before starting the application:
+
+```bash
+# macOS/Linux
+mongod --dbpath /your/data/path
+
+# Windows (if installed as a service)
+net start MongoDB
+```
+
+---
+
+## Running the Application
+
+```bash
+python mainProject.py
+```
+
+The application opens to the Sign Up screen. From there, users can register a new account or navigate to the Login screen if they already have one.
+
+---
+
+## Database Schema
+
+The application uses the `passwordManager` database with a single collection: `userDetails`.
+
+### Collection: `userDetails`
+
+Each document represents one registered user. The `apps` array grows as the user adds credentials.
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "password": "string (SHA-256 hex digest)",
+  "apps": [
+    {
+      "appName": "string",
+      "appEmail": "string",
+      "appPassword": "string (stored as plaintext)"
+    }
+  ]
+}
+```
+
+**Write operations:**
+
+- Registration: `insert_one()` with an empty `apps` array
+- Add credential: `update_one()` with `$push` on the `apps` array, matched by user email
+- Delete credential: `update_one()` with `$pull` on the `apps` array, matched by `appName` and `appEmail`
+- Read credentials: `find_one()` matched by user email, returns the full document including `apps`
+
+---
+
+## Module Reference
+
+### `mainProject.py`
+
+The application entry point. Contains three window functions and a hash utility.
+
+**`hash_password(password)`**
+
+Encodes the input string to bytes and returns its SHA-256 hex digest. Used at both registration and login.
+
+**`main()`**
+
+Builds and displays the Sign Up window (1080x720). Collects name, email, password, and confirm password. Validates that all fields are filled, passwords match, and the email is not already registered. On success, calls `insert_one()` to create the user document, then transitions to `login_window()`.
+
+**`login_window()`**
+
+Builds and displays the Login window. Hashes the entered password and calls `find_one()` to match against the stored hash. On success, sets the `current_user` global variable to the authenticated email and transitions to `create_home_window()`.
+
+**`create_home_window()`**
+
+Builds and displays the main dashboard window with three panels:
+
+- **Add Password panel** — three entry fields (app name, email, password with masking). On submit, calls `update_one()` with `$push` to append a new entry to the user's `apps` array.
+- **Delete Password panel** — two entry fields (app name and email). On delete, calls `update_one()` with `$pull` to remove the matching entry from the `apps` array.
+- **View Passwords panel** — a button that opens a `CTkToplevel` window containing a `CTkScrollableFrame`. Each stored credential is rendered as a labelled card showing app name, email, and password in plaintext.
+- **Logout button** — destroys the home window and calls `main()` to return to the signup screen.
+
+### `signUp.py`, `login.py`, `home.py`
+
+Split versions of each screen as standalone modules. Functionally equivalent to their counterparts in `mainProject.py`.
+
+---
+
+## Security Notes
+
+- User account passwords are hashed with SHA-256 before being written to MongoDB. The plaintext password is never stored.
+- Stored application passwords (the credentials the user is managing) are written to MongoDB as plaintext. If stronger security is required, consider encrypting these with a key derived from the user's master password before storage.
+- The MongoDB connection does not use authentication. For any deployment beyond local development, enable MongoDB access control and use an authenticated connection string.
+
+---
+
+## Author
+
+Atharva Kumkar
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
